@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fun Time</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleFunTime.css">
+  </head>
+  <body>
+    <div class="banner">
+      <div class="navbar">
+        <p class="logo">logo</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Play Time</a></li>
+          <li><a href="#">About</a></li>
+
+          <img src="pic/cart.svg" alt="">
+          <img src="pic/user.svg" alt="">
+        </ul>
+ 
+      </div>
+
+      
+      <div class="grid">
+        <div class="RockPaper">
+          
+        <p >Rock Paper Scissors</p>
+        <div class="buttons">
+        <button onclick="
+      
+        Vysledek('rock', 'Tie', 'You lose', 'You win');
+
+        ">Rock</button>
+        
+        <button class="js-button" onclick="
+
+           Vysledek('paper', 'You win', 'Tie', 'You lose');
+
+        ">Paper</button>
+        <button onclick="
+
+          Vysledek('scissors', 'You lose', 'You win', 'Tie');
+
+        ">Scissors</button>
+         </div>
+
+<p class="js-result"></p>
+<p class="js-moves"></p>
+<p class="js-score" style="color: aliceblue; margin-top: 10px;"></p>
+
+
+       
+        
+
+        <button onclick="
+        reset();
+        ">Reset</button>
+        </div>
+       
+       
+     
+       
+        <div class="YoutubeButton">
+
+        <p>Youtube subscribe button</p>
+        <button class="subsButton" onclick="
+       
+       subscribe();
+
+        ">Subscribe</button>
+  
+  
+       
+      </div>
+
+       
+          <div class="Shipping">
+
+            <p> Shipping Calculator</p>
+            
+            <input  placeholder="Cena položky" class="js-cost-input" onkeydown="EnterKeyDown(event);">
+            <p style="font-size: 10px;">Doprava pod 2000 Kč za 69 Kč </p>
+            <button onclick="
+            calculateTotal();
+            ">calculate</button>
+            
+            <p class="js-cena"></p>
+
+          </div>
+
+        
+        </div>
+
+
+
+      
+
+        
+
+
+
+ 
+<script>
+  
+  
+  let randomNumber = null;
+  let computerMove = '';
+  let result = '';
+  
+
+  function EnterKeyDown(event )
+  {
+    
+            if(event.key === 'Enter')
+            {
+              calculateTotal();
+            }
+  }
+
+  
+  function calculateTotal()
+  {
+    const input = document.querySelector('.js-cost-input');
+    let cena = Number(input.value);
+
+    if(cena < 2000)
+    {
+        cena += 69;
+
+    }
+    document.querySelector('.js-cena').innerHTML = `${cena} Kč`;
+  }
+
+
+  let score = JSON.parse(localStorage.getItem('score')) || {
+  wins:0 , 
+  losses:0, 
+  ties: 0
+};
+
+uptadeScore();
+
+  
+
+/*
+  if(score === null)
+  {
+score = {
+  wins:0 , 
+  losses:0, 
+  ties: 0
+};
+  }
+    */
+  
+
+
+function uptadeScore()
+{
+  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins} Losses: ${score.losses} Ties: ${score.ties}`;
+  document.querySelector('.js-result').innerHTML = result;
+  
+}
+
+function reset()
+{
+  score.wins = score.losses = score.ties =  0;
+  document.querySelector('.js-score').innerHTML = 'Score reset';
+  document.querySelector('.js-result').innerHTML = '';
+  document.querySelector('.js-moves').innerHTML = '';
+}
+
+function ComputerPick()
+{
+   randomNumber = Math.random();
+
+        
+         
+  
+        if(randomNumber >= 0  && randomNumber <1/3)
+        {
+          computerMove = 'rock';
+        }
+        else if(randomNumber >= 1/3 && randomNumber <2/3)
+        {
+          computerMove = 'paper';
+        }
+        else
+        {
+          computerMove = 'scissors';
+        }
+
+        
+}
+
+function Vysledek(volba, rock, paper, scissors)
+{
+ 
+  ComputerPick();
+
+  
+  
+          if(computerMove === 'rock')
+          {
+           result = rock;
+          }
+          else if (computerMove==='paper')
+          {
+            result = paper;
+          }
+          else
+          {
+            result = scissors;
+          }
+
+          if(result==='You win')
+          {
+            score.wins++;
+          }
+          else if(result=='You lose')
+          {
+            score.losses++;
+          }
+          else 
+          {
+            score.ties++;
+          }
+
+          localStorage.setItem('score', JSON.stringify(score));
+
+          uptadeScore();
+
+          document.querySelector('.js-moves').innerHTML = `You picked ${volba}. PC picked ${computerMove}`;
+
+         
+
+
+  
+          
+}
+
+  console.log(document.querySelector('button').innerHTML);
+
+  document.querySelector('.js-button').innerHTML = 'papír'; 
+
+
+  function subscribe()
+  {
+    const buttonSubscribe =  document.querySelector('.subsButton');
+
+    console.log(buttonSubscribe);
+    if(buttonSubscribe.innerHTML ==='Subscribe')
+    {
+    buttonSubscribe.innerText = 'Subscribed';
+    
+    }
+
+    else
+    {
+    buttonSubscribe.innerText = 'Subscribe';
+    }
+      }
+
+</script>
+
+
+
+
+  </body>
+</html>
