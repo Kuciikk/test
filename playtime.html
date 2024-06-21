@@ -23,38 +23,39 @@
       </div>
 
       
-      <div class="grid">
+      <div class="flex">
         <div class="RockPaper">
           
         <p >Rock Paper Scissors</p>
-        <div class="buttons">
-        <button onclick="
+        <div class="buttons ">
+        <button class="rock-paper-scissors" onclick="
       
         Vysledek('rock', 'Tie', 'You lose', 'You win');
 
-        ">Rock</button>
+        "><img  src="pic/rock-emoji.png" alt=""></button>
         
-        <button class="js-button" onclick="
+        <button class="js-button rock-paper-scissors" onclick="
 
            Vysledek('paper', 'You win', 'Tie', 'You lose');
 
-        ">Paper</button>
-        <button onclick="
+        "><img  src="pic/paper-emoji.png" alt=""></button>
+        <button class="rock-paper-scissors" onclick="
 
           Vysledek('scissors', 'You lose', 'You win', 'Tie');
 
-        ">Scissors</button>
+        "><img   src="pic/scissors-emoji.png" alt=""></button>
          </div>
 
 <p class="js-result"></p>
-<p class="js-moves"></p>
+<p class="js-moves">
+ 
 <p class="js-score" style="color: aliceblue; margin-top: 10px;"></p>
 
 
        
         
 
-        <button onclick="
+        <button class="reset-button" onclick="
         reset();
         ">Reset</button>
         </div>
@@ -82,18 +83,30 @@
             
             <input  placeholder="Cena položky" class="js-cost-input" onkeydown="EnterKeyDown(event);">
             <p style="font-size: 10px;">Doprava pod 2000 Kč za 69 Kč </p>
-            <button onclick="
+            <button class="shipping-button" onclick="
             calculateTotal();
             ">calculate</button>
             
             <p class="js-cena"></p>
 
           </div>
+        </div>
           
           
 
-        
+          <div class="flex2">
+        <div class="info">
+          <p>Změny</p>
+          <p>
+            <ul>
+              <li>vylepšení kámen, nůžky, papír</li>
+              <li>youtube tlačítko mění barvu po stisku</li>
+            </ul>
+          </p>
         </div>
+
+        </div>
+      
 
 
 
@@ -110,6 +123,8 @@
   let randomNumber = null;
   let computerMove = '';
   let result = '';
+
+  
   
 
   function EnterKeyDown(event )
@@ -234,7 +249,11 @@ function Vysledek(volba, rock, paper, scissors)
 
           uptadeScore();
 
-          document.querySelector('.js-moves').innerHTML = `You picked ${volba}. PC picked ${computerMove}`;
+          document.querySelector('.js-moves').innerHTML = ` 
+          <div class="computer">
+<img  class="moves-icon" src="pic/${computerMove}-emoji.png" alt="">
+<p>PC</p>
+</div>`;
 
          
 
@@ -243,9 +262,7 @@ function Vysledek(volba, rock, paper, scissors)
           
 }
 
-  console.log(document.querySelector('button').innerHTML);
-
-  document.querySelector('.js-button').innerHTML = 'papír'; 
+  
 
 
   function subscribe()
@@ -256,12 +273,14 @@ function Vysledek(volba, rock, paper, scissors)
     if(buttonSubscribe.innerHTML ==='Subscribe')
     {
     buttonSubscribe.innerText = 'Subscribed';
+    buttonSubscribe.classList.add('subscribed-press');
     
     }
 
     else
     {
     buttonSubscribe.innerText = 'Subscribe';
+    buttonSubscribe.classList.remove('subscribed-press');
     }
       }
 

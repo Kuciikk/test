@@ -1,59 +1,30 @@
-.grid
+.flex
 {
   
   margin: 15px 60px;
-  display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: repeat(2,300px);
-  grid-auto-flow: column;
-  
-  align-items: center;
-  gap: 10px;
-
- 
-  
-  
-}
-
-.RockPaper, .YoutubeButton, .Shipping
-{
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  width: 300px;
-  border-radius: 25px;
-  align-items: center;
-  height: fit-content;
- padding:10px 0;
+ flex-wrap: wrap;
+  align-items: left;
+  gap: 10px;
+
 }
 
 
 
-
-
-
-
-button
+.flex2
 {
+  position: absolute;
+  top: 99.4px;
+  left: 370px;
   
-  background-color: rgb(22, 88, 126);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  margin-bottom: 15px;
-  
+  display: flex;
+  flex-direction: column;
+ flex-wrap: wrap;
+  align-items: left;
+  gap: 10px;
+
 }
-
-.subsButton
-{
-  background-color: rgb(145, 0, 0);
-  font-weight: bold;
-}
-
-
-
 
 
 
@@ -67,4 +38,114 @@ font-weight: bold;
 text-align: center;
 
 }
+
+.RockPaper, .YoutubeButton, .Shipping, .info
+{
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 25px;
+  align-items: center;
+  height: fit-content;
+ padding:10px 0;
+ 
+}
+
+
+.info
+{
+
+}
+
+
+li
+{
+  color: white;
+  font-size: 15px;
+}
+
+
+.rock-paper-scissors
+{
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 60px;
+  cursor: pointer;
+  
+}
+
+.rock-paper-scissors img
+{
+  
+  width: 60px;
+}
+
+.moves-icon
+{
+  width: 60px;
+  margin: 0 10px;
+}
+
+.computer
+{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+ 
+}
+.computer p
+{
+  
+  padding: 0;
+  margin: 0;
+ 
+  text-align: center;
+  
+}
+.js-result
+{
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.shipping-button, .subsButton, .reset-button
+{
+  
+  background-color: rgb(22, 88, 126);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+  
+}
+
+.subsButton
+{
+  background-color: rgb(145, 0, 0);
+  font-weight: bold;
+}
+
+.subscribed-press
+{
+  background-color: rgb(95, 1, 1);
+
+}
+
+input
+{
+  height: 30px;
+  font-size: 15px;
+  border-radius: 15px;
+  padding-left: 10px;
+}
+
+
+
+
+
 
