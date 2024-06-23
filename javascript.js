@@ -172,7 +172,7 @@ function subscribe()
     function renderToDoList()
     {
 
-    
+      
 
 
    
@@ -186,11 +186,13 @@ const html = `<p>${todo}</p>`;
 todoListHTML += html;
     }
 
-
+   
 
     console.log(todoListHTML);
 
     document.querySelector('.js-todo').innerHTML = todoListHTML;
+
+    
 
   }
 
@@ -210,6 +212,10 @@ todolist.push(name);
 
 console.log(todolist);
 renderToDoList();
+
+
+
+
 
 
 }
