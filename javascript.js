@@ -211,6 +211,7 @@ function addToDo()
 todolist.push(name);
 
 console.log(todolist);
+
 renderToDoList();
 
 
