@@ -39,7 +39,7 @@ text-align: center;
 
 }
 
-.RockPaper, .YoutubeButton, .Shipping, .info, .ToDo
+.RockPaper, .YoutubeButton, .Shipping, .info
 {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
