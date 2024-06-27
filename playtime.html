@@ -32,18 +32,18 @@
         <div class="buttons ">
         <button class="rock-paper-scissors" onclick="
       
-        Vysledek('rock', 'Tie', 'You lose', 'You win');
+        Vysledek('rock');
 
         "><img  src="pic/rock-emoji.png" alt=""></button>
         
         <button class="js-button rock-paper-scissors" onclick="
 
-           Vysledek('paper', 'You win', 'Tie', 'You lose');
+           Vysledek('paper');
 
         "><img  src="pic/paper-emoji.png" alt=""></button>
         <button class="rock-paper-scissors" onclick="
 
-          Vysledek('scissors', 'You lose', 'You win', 'Tie');
+          Vysledek('scissors');
 
         "><img   src="pic/scissors-emoji.png" alt=""></button>
          </div>
@@ -60,6 +60,8 @@
         <button class="reset-button" onclick="
         reset();
         ">Reset</button>
+
+        <button onclick="autoplay();" class="autoplay">Autoplay</button>
         </div>
        
        
@@ -149,6 +151,8 @@ let result = '';
 
 
 
+
+
 function EnterKeyDown(event )
 {
   
@@ -234,28 +238,114 @@ function ComputerPick()
         computerMove = 'scissors';
       }
 
+     
+
       
 }
 
-function Vysledek(volba, rock, paper, scissors)
+let isAutoPlay = false;
+let intervalId;
+
+function autoplay()
+{
+  
+  if (!isAutoPlay){
+   intervalId =setInterval(function(){
+    let player = function()
+    { randomNumber = Math.random();
+
+
+      
+       
+
+if(randomNumber >= 0  && randomNumber <1/3)
+{
+  computerMove = 'rock';
+}
+else if(randomNumber >= 1/3 && randomNumber <2/3)
+{
+  computerMove = 'paper';
+}
+else
+{
+  computerMove = 'scissors';
+}
+
+};
+    Vysledek(computerMove);
+  },1000);
+  
+isAutoPlay = true;}
+else
+{
+clearInterval(intervalId);
+isAutoPlay = false;
+}
+
+}
+
+
+function Vysledek(volba)
 {
 
 ComputerPick();
+console.log(computerMove);
+console.log(volba);
 
 
 
-        if(computerMove === 'rock')
+if(volba === 'rock')
+{
+  if(computerMove === 'rock')
         {
-         result = rock;
+         result = 'Tie';
         }
         else if (computerMove==='paper')
         {
-          result = paper;
+          result = 'You lose';
         }
         else
         {
-          result = scissors;
+          result = 'You win';
         }
+
+}
+
+else if(volba === 'paper')
+{
+  if(computerMove === 'rock')
+        {
+         result = 'You win';
+        }
+        else if (computerMove==='paper')
+        {
+          result = 'Tie';
+        }
+        else
+        {
+          result = 'You lose';
+        }
+
+}
+
+else if(volba === 'scissors')
+{
+  if(computerMove === 'rock')
+        {
+         result = 'You lose';
+        }
+        else if (computerMove==='paper')
+        {
+          result = 'You win';
+        }
+        else
+        {
+          result = 'Tie';
+        }
+
+}
+
+
 
         if(result==='You win')
         {
@@ -270,22 +360,26 @@ ComputerPick();
           score.ties++;
         }
 
+        if(volba === 'rock')
+        {
+          
+        }
+
         localStorage.setItem('score', JSON.stringify(score));
 
         uptadeScore();
 
         document.querySelector('.js-moves').innerHTML = ` 
         <div class="computer">
+          You <img  class="moves-icon" src="pic/${volba}-emoji.png" alt="">
 <img  class="moves-icon" src="pic/${computerMove}-emoji.png" alt="">
 <p>PC</p>
 </div>`;
 
-       
-
-
-
+  
         
 }
+
 
 
 
@@ -319,21 +413,19 @@ function subscribe()
 
 let todoListHTML = '';
 
-  for(let i = 0;i<todolist.length;i++)
-    {
-const todoObject = todolist[i];
-
+todolist.forEach(function(todoObject, index){
+  
 const {name, date} = todoObject;
 
 const html = `<p>${name} ${date} <button onclick="
-  todolist.splice(${i},1);
+  todolist.splice(${index},1);
   renderToDoList();
   " class="del-list-button">DELETE</button></p> `;
 todoListHTML += html;
-    }
 
-   
+    });
 
+  
     console.log(todoListHTML);
 
     document.querySelector('.js-todo').innerHTML = todoListHTML;
@@ -425,6 +517,63 @@ function double (num)
 console.log(double([1,1,3]));
 console.log(double([2,2,5]));
 
+
+function greeting()
+{console.log('hello');
+
+}
+greeting();
+
+const num = 2;
+const function1 = function (){console.log('hello2');}
+
+console.log(function1);
+
+function1();
+
+
+const object1 = 
+{
+  num:2, 
+  fun: function greeting(){console.log('hello3');}
+};
+object1.fun();
+
+function display(param)
+{
+  console.log(param);
+}
+
+display(2);
+
+function run(param)
+{
+param();
+}
+
+run(function (){console.log('hello4');});
+
+
+setTimeout(function(){
+  console.log('timeout');
+}, 3000);
+
+console.log('next line');
+
+setInterval(function(){console.log('interval')}, 3000);
+
+[
+  'make dinner',
+  'wash dishes',
+  'watch youtube'
+].forEach( function(value, index){
+  if(value === 'wash dishes')
+  {
+    return;
+  }
+  console.log(index);
+console.log(value);
+});
   </script>
 </html>
 
